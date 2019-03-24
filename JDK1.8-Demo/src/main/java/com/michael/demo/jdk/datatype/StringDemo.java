@@ -37,7 +37,7 @@ public class StringDemo {
      * 不使用intern,大数据量时内存狂升,执行速率低,小数据量时速度快于使用intern
      */
     public static void internTest0() {
-        
+
         Integer[] DB_DATA = new Integer[10];
         Random random = new Random(10 * 10000);
         for (int i = 0; i < DB_DATA.length; i++) {
@@ -68,7 +68,7 @@ public class StringDemo {
         String[] arr = new String[MAX];
         for (int i = 0; i < MAX; i++) {
             //其实虽然这么多字符串，但是类型最多为10个，大部分重复的字符串,大大减少内存
-             arr[i] = new String(String.valueOf(DB_DATA[i % DB_DATA.length])).intern();
+            arr[i] = new String(String.valueOf(DB_DATA[i % DB_DATA.length])).intern();
         }
 
         System.out.println("加intern() 耗时" + (System.currentTimeMillis() - t) + "ms");
@@ -114,7 +114,7 @@ public class StringDemo {
         println("");
     }
 
-    private static void println(String pattern, Object... arguments) {
+    public static void println(String pattern, Object... arguments) {
         System.out.println(MessageFormat.format(pattern, arguments));
     }
 
