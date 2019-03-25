@@ -16,6 +16,7 @@ public class LinkedBlockingQueueDemo {
         //2、创建一个生产者，一个消费者
         LinkedBlockingQueueProducer linkedBlockingQueueProducer = new LinkedBlockingQueueProducer(queue, MAX_NUM);
         LinkedBlockingQueueConsumer linkedBlockingQueueConsumer = new LinkedBlockingQueueConsumer(queue, MAX_NUM);
+        LinkedBlockingQueueConsumer linkedBlockingQueueConsumer2 = new LinkedBlockingQueueConsumer(queue, MAX_NUM);
 
         //3、开启两个线程
 
@@ -33,6 +34,7 @@ public class LinkedBlockingQueueDemo {
 
         executorService.submit(linkedBlockingQueueProducer);
         executorService.submit(linkedBlockingQueueConsumer);
+        // executorService.submit(linkedBlockingQueueConsumer2);
 
         // 程序运行10s后，所有任务停止
         try {
@@ -74,7 +76,7 @@ class LinkedBlockingQueueProducer extends Thread {
         while (true) {
             try {
                 queue.put(new LinkedBlockingQueueApple(queue.size()));
-                System.out.println("LinkedBlockingQueueProducer queue size " + queue.size());
+                System.out.println(Thread.currentThread().getName() + "\tLinkedBlockingQueueProducer queue size " + queue.size());
                 Thread.sleep(50);
             } catch (InterruptedException e) {
                 // TODO Auto-generated catch block
@@ -100,8 +102,8 @@ class LinkedBlockingQueueConsumer extends Thread {
         while (true) {
             try {
                 queue.take();
-                System.out.println("LinkedBlockingQueueConsumer LinkedBlockingQueueApple is left : " + queue.size());
-                Thread.sleep(60);
+                System.out.println(Thread.currentThread().getName() + "\tLinkedBlockingQueueConsumer LinkedBlockingQueueApple is left : " + queue.size());
+                Thread.sleep(50);
             } catch (InterruptedException e) {
                 // TODO Auto-generated catch block
                 System.out.println("No LinkedBlockingQueueApple " + queue.size());
@@ -109,5 +111,4 @@ class LinkedBlockingQueueConsumer extends Thread {
             }
         }
     }
-
 }
