@@ -10,6 +10,8 @@ import java.util.*;
  *  物理节点
  *  虚拟节点
  *  hash算法
+ *      —— 不能使用JDK自己的hashCode,因为不够散列
+ *      —— 其它的hash算法有 CRC32_HASH、FNV1_32_HASH、KETAMA_HASH(memcache推荐的hash算法)
  *  将虚拟节点放到hash环上
  *  数据找到对应的虚拟节点
  * </pre>
@@ -27,7 +29,7 @@ public class ConsistenceHashDemo {
     /** 排序存储结构 使用红黑树 key 是虚拟节点的hash值 value是物理节点 */
     private SortedMap<Integer, String> sortedMap = new TreeMap<>();
 
-    /** 虚拟节点的数量 */
+    /** 每个真实节点对应虚拟节点的数量 */
     private int virtualNums = 100;
 
     public ConsistenceHashDemo(int virtualNums) {
@@ -46,19 +48,21 @@ public class ConsistenceHashDemo {
 
         String vnode = null;
 
-        int i = 0, count = 0;
+        int autoIncrement = 0;
+        int existingVirtualNodeCount = 0;
         List<Integer> vnodes = new ArrayList<>();
         this.real2VirtualMap.put(realNode, vnodes);
 
-        // 创建虚拟节点，并放置到环上
-        while (count < this.virtualNums) {
-            i++;
-            vnode = realNode + "$$" + i;
+        // 创建虚拟节点，并放置到环上 —— 为了防止hash碰撞，使用while，确保虚拟节点数量足够
+        while (existingVirtualNodeCount < this.virtualNums) {
+            autoIncrement++;
+            // 生成hash值对应到物理节点
+            vnode = realNode + "$$" + autoIncrement;
             int hashValue = this.getHash(vnode);
             if (!this.sortedMap.containsKey(hashValue)) {
                 vnodes.add(hashValue);
                 this.sortedMap.put(hashValue, realNode);
-                count++;
+                existingVirtualNodeCount++;
             }
         }
     }
@@ -127,13 +131,15 @@ public class ConsistenceHashDemo {
 
     public static void main(String[] args) {
 
-        ConsistenceHashDemo demo = new ConsistenceHashDemo();
+        ConsistenceHashDemo demo = new ConsistenceHashDemo(1000);
 
         demo.addServer("192.168.127.1");
         demo.addServer("192.168.127.2");
         demo.addServer("192.168.127.3");
         demo.addServer("192.168.127.4");
         demo.addServer("192.168.127.5");
+        demo.addServer("192.168.127.6");
+        demo.addServer("192.168.127.7");
 
         for (int i = 0; i < 100; i++) {
             System.out.println("a" + i + "对应的服务器 -> " + demo.getServer("a" + i));
