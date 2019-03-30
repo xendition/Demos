@@ -17,6 +17,7 @@
         <module>RabbitMQ-Demo</module>
         <module>Mybatis-Demo</module>
         <module>SpringCloud-Demo</module>
+        <module>Design-Mode-Demo</module>
     </modules>
 
     <packaging>pom</packaging>
