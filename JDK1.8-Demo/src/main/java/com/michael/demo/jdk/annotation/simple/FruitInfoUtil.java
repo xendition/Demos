@@ -1,4 +1,4 @@
-package com.michael.demo.jdk.annotation;
+package com.michael.demo.jdk.annotation.simple;
 
 import java.lang.reflect.Field;
 

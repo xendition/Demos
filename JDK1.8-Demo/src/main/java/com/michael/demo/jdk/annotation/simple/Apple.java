@@ -1,4 +1,4 @@
-package com.michael.demo.jdk.annotation;
+package com.michael.demo.jdk.annotation.simple;
 
 public class Apple {
 
