@@ -10,6 +10,10 @@
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>Spring-Cache-Demo</artifactId>
+    <packaging>pom</packaging>
 
+    <modules>
+        <module>Spring-Cache-Caffeine-Demo</module>
+    </modules>
 
 </project>

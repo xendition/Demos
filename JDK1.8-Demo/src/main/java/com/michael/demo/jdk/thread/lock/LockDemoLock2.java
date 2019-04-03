@@ -4,7 +4,7 @@ import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 
 /**
- * JAVA Lock演示DEMO - 使用AtomicInteger(J.U.C包中的原子类)实现,底层使用了CAS机制
+ * JAVA Lock演示DEMO - 使用 ReentrantLock JAVA自带的可重入锁
  *
  * @author Michael
  */

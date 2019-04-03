@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration scan="true">
+
+    <property name="console_log_pattern"
+              value="%highlight(%d{yyyy-MM-dd HH:mm:ss.SSS}) %highlight(%-5level) %highlight(--- %thread) %cyan(%logger{39}) \t: %highlight(%msg%n)"/>
+
+    <appender name="Console"
+              class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>${console_log_pattern}</pattern>
+            <charset>UTF-8</charset>
+        </encoder>
+    </appender>
+
+    <logger name="com.kanglefucn"
+            level="DEBUG"/>
+    <logger name="org.springframework"
+            level="WARN"/>
+    <logger name="org.springframework.context"
+            level="WARN"/>
+    <logger name="org.springframework.boot"
+            level="WARN"/>
+    <logger name="org.springframework.boot.actuate"
+            level="WARN"/>
+    <logger name="org.springframework.boot.autoconfigure"
+            level="WARN"/>
+
+    <logger name="org.I0Itec"
+            level="WARN"/>
+    <logger name="tk.mybatis"
+            level="WARN"/>
+
+    <logger name="org.apache.zookeeper"
+            level="WARN"/>
+
+    <root level="ERROR">
+        <appender-ref ref="Console"/>
+    </root>
+
+
+</configuration>

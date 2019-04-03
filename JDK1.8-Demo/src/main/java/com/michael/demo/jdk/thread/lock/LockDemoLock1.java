@@ -1,7 +1,7 @@
 package com.michael.demo.jdk.thread.lock;
 
 /**
- * JAVA Lock演示DEMO - 使用AtomicInteger(J.U.C包中的原子类)实现,底层使用了CAS机制
+ * JAVA Lock演示DEMO - 使用 synchronized 关键字
  *
  * @author Michael
  */
