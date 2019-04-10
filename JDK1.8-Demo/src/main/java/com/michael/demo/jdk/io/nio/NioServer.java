@@ -50,7 +50,7 @@ public class NioServer extends AbstractIOConstant {
         int connectionCount = 0;
 
         // 少量的线程
-        int threadPoolSize = 6;
+        int threadPoolSize = 12;
         ExecutorService threadPool = Executors.newFixedThreadPool(threadPoolSize);
 
         while (true) {
@@ -146,6 +146,7 @@ public class NioServer extends AbstractIOConstant {
                 count++;
 
                 ByteBuffer tempBuffer = ByteBuffer.allocateDirect(bufferSize * (count + 1));
+
                 if (bigBuffer != null) {
                     // 将buffer由写模式转为读模式
                     bigBuffer.flip();

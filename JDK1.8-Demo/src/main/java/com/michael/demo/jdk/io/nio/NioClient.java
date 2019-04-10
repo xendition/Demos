@@ -21,7 +21,7 @@ import java.util.concurrent.CyclicBarrier;
  */
 public class NioClient extends AbstractIOConstant {
 
-    private static int clientCount = 3000;
+    private static int clientCount = 2000;
 
     public static void main(String[] args) throws InterruptedException {
 
@@ -59,13 +59,13 @@ public class NioClient extends AbstractIOConstant {
         @Override
         public void run() {
 
-            try {
-                this.barrier.await();
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            } catch (BrokenBarrierException e) {
-                e.printStackTrace();
-            }
+            // try {
+            //     this.barrier.await();
+            // } catch (InterruptedException e) {
+            //     e.printStackTrace();
+            // } catch (BrokenBarrierException e) {
+            //     e.printStackTrace();
+            // }
 
             try (
                     SocketChannel sc = SocketChannel.open()
