@@ -18,6 +18,7 @@
         <module>Mybatis-Demo</module>
         <module>SpringCloud-Demo</module>
         <module>Design-Mode-Demo</module>
+        <module>Shiro-Demo</module>
     </modules>
 
     <packaging>pom</packaging>
