@@ -7,12 +7,12 @@ public class CalculatorMain {
 
     public static void main(String[] args) {
 
-        int result = Calculator.ADD.exec(1,11);
+        int result = Calculator.ADD.exec(1, 11);
 
-        System.out.println(result);
+        System.out.println("Calculator.ADD.exec(1,11) -> " + result);
 
-        result = Calculator.SUB.exec(1,11);
+        result = Calculator.SUB.exec(1, 11);
 
-        System.out.println(result);
+        System.out.println("Calculator.SUB.exec(1,11) -> " + result);
     }
 }
